@@ -1,4 +1,4 @@
-package br.com.ramirosneto.github.repos.app.ui.theme
+package br.com.ramirosneto.github.repos.app.presentation.theme
 
 import android.app.Activity
 import android.os.Build

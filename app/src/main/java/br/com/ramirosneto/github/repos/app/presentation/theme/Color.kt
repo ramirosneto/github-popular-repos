@@ -1,4 +1,4 @@
-package br.com.ramirosneto.github.repos.app.ui.theme
+package br.com.ramirosneto.github.repos.app.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
