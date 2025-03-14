@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.bumptech.glide.** { *; }
+-keep class com.github.bumptech.glide.** { *; }
+-keep class com.bumptech.glide.annotation.** { *; }
+-keep class com.bumptech.glide.module.** { *; }
