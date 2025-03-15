@@ -1,7 +1,11 @@
 package br.com.ramirosneto.github.repos.app.application
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import br.com.ramirosneto.github.repos.app.di.AppComponent
 
-@HiltAndroidApp
-class MyApplication : Application()
+class MyApplication : Application() {
+
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.factory().create(applicationContext)
+    }
+}
