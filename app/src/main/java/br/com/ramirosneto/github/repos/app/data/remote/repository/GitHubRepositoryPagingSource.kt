@@ -14,7 +14,7 @@ class RepositoryPagingSource(
         val page = params.key ?: 1
         return try {
             val response =
-                repository.searchRepositories("language:Kotlin", "stars", page).blockingGet()
+                repository.searchRepositories(QUERY, DEFAULT_SORT, page).blockingGet()
             LoadResult.Page(
                 data = response.repositories,
                 prevKey = if (page == 1) null else page - 1,
@@ -32,5 +32,10 @@ class RepositoryPagingSource(
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
+    }
+
+    companion object {
+        private const val QUERY = "language:Kotlin"
+        private const val DEFAULT_SORT = "stars"
     }
 }

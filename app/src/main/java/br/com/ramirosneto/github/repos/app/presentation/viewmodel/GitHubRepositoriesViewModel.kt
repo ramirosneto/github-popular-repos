@@ -10,13 +10,17 @@ import br.com.ramirosneto.github.repos.app.data.remote.repository.RepositoryPagi
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-@HiltViewModel
-class RepositoryViewModel @Inject constructor(private val repository: GitHubRepository) : ViewModel() {
+class RepositoryViewModel @Inject constructor(private val repository: GitHubRepository) :
+    ViewModel() {
 
-    fun getRepositories(): Flowable<PagingData<Repository>> {
+    fun getRepositories(): Flowable<PagingData<Repository>>? {
         return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
             pagingSourceFactory = { RepositoryPagingSource(repository) }
         ).flowable
+    }
+
+    companion object {
+        private const val PAGE_SIZE = 20
     }
 }
