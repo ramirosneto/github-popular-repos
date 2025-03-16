@@ -1,18 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
 }
 
 android {
     namespace = "br.com.ramirosneto.github.repos.app"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "br.com.ramirosneto.github.repos.app"
-        minSdk = 24
-        targetSdk = 35
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -30,12 +29,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 
     buildFeatures {
@@ -44,11 +43,11 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    implementation(libs.compose.foundation)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
@@ -63,9 +62,11 @@ dependencies {
     kapt(libs.glide.compiler)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    implementation(libs.paging.rxjava)
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
 
+    testImplementation(libs.paging.common)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
@@ -75,4 +76,8 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+    correctErrorTypes = true
 }

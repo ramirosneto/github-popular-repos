@@ -35,7 +35,7 @@ class RepositoryPagingSource(
     }
 
     companion object {
-        private const val QUERY = "language:Kotlin"
+        private const val QUERY = "language:Java"
         private const val DEFAULT_SORT = "stars"
     }
 }

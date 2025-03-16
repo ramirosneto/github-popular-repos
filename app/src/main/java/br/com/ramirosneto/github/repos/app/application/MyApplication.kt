@@ -5,7 +5,7 @@ import br.com.ramirosneto.github.repos.app.di.AppComponent
 
 class MyApplication : Application() {
 
-    val appComponent: AppComponent by lazy {
+    /*val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(applicationContext)
-    }
+    }*/
 }
