@@ -10,8 +10,8 @@ activityCompose = "1.10.1"
 composeBom = "2025.03.00"
 retrofit = "2.11.0"
 moshi = "1.15.1"
-rxjava = "2.2.21"
-rxandroid = "2.1.1"
+rxjava = "3.1.10"
+rxandroid = "3.0.2"
 glide = "4.16.0"
 dagger = "2.55"
 paging = "3.3.6"
@@ -32,20 +32,20 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-runtime-rxjava3 = { group = "androidx.compose.runtime", name = "runtime-rxjava3", version.ref = "composeUI" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-adapter = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit" }
+retrofit-adapter = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
 retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
-rxjava = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxjava" }
-rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxandroid" }
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 paging-rxjava = { group = "androidx.paging", name = "paging-rxjava3", version.ref = "paging" }
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
 
 [plugins]

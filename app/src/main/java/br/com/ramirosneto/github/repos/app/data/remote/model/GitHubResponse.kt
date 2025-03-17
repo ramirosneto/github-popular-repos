@@ -1,20 +1,21 @@
 package br.com.ramirosneto.github.repos.app.data.remote.model
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GitHubResponse(
-    val totalCount: Int,
-    val incompleteResults: Boolean,
-    val repositories: List<Repository>
+    @Json(name = "total_count") val totalCount: Int,
+    @Json(name = "incomplete_results") val incompleteResults: Boolean,
+    val items: List<GitHubRepositoryData>
 )
 
 @JsonClass(generateAdapter = true)
-data class Repository(
+data class GitHubRepositoryData(
     val id: Int,
     val name: String?,
     val description: String?,
-    val forks: Int,
+    @Json(name = "forks_count") val forksCount: Int,
     val watchers: Int,
-    val score: Double,
+    val score: Double
 )

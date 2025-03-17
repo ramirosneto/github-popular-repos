@@ -1,6 +1,6 @@
 package br.com.ramirosneto.github.repos.app.di
 
-import br.com.ramirosneto.github.repos.app.MainActivity
+import br.com.ramirosneto.github.repos.app.presentation.view.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 

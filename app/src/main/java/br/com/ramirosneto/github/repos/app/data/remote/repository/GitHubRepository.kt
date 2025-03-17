@@ -1,13 +1,12 @@
 package br.com.ramirosneto.github.repos.app.data.remote.repository
 
-import br.com.ramirosneto.github.repos.app.data.remote.api.GitHubApi
-import javax.inject.Inject
+import br.com.ramirosneto.github.repos.app.data.remote.model.GitHubPullRequest
+import br.com.ramirosneto.github.repos.app.presentation.model.RepositoryDTO
+import io.reactivex.rxjava3.core.Single
 
-class GitHubRepository @Inject constructor(private val api: GitHubApi) {
+interface GitHubRepository {
 
-    fun searchRepositories(query: String, sort: String, page: Int) =
-        api.searchRepositories(query, sort, page)
+    fun searchRepositories(query: String, sort: String, page: Int): Single<List<RepositoryDTO>>
 
-    fun getPullRequests(owner: String, repo: String) =
-        api.getPullRequests(owner, repo)
+    fun getPullRequests(owner: String, repo: String): Single<List<GitHubPullRequest>>
 }

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">github-popular-repos</string>
+    <string name="app_name">GitHub Popular Repos</string>
+    <string name="java_repos">Java popular repos</string>
 </resources>

@@ -2,7 +2,7 @@ package br.com.ramirosneto.github.repos.app.data.remote.api
 
 import br.com.ramirosneto.github.repos.app.data.remote.model.GitHubPullRequest
 import br.com.ramirosneto.github.repos.app.data.remote.model.GitHubResponse
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
