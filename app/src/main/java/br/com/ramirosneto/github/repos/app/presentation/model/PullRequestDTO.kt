@@ -1,10 +1,9 @@
 package br.com.ramirosneto.github.repos.app.presentation.model
 
-data class RepositoryDTO(
-    val id: Long,
-    val name: String?,
+data class PullRequestDTO(
+    val title: String?,
     val description: String?,
-    val forksCount: Int,
-    val starsCount: Int,
+    val url: String?,
+    val date: String?,
     val owner: RepositoryOwner
 )

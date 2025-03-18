@@ -1,20 +1,24 @@
 package br.com.ramirosneto.github.repos.app.data.remote.repository
 
 import br.com.ramirosneto.github.repos.app.data.remote.api.GitHubApi
-import br.com.ramirosneto.github.repos.app.data.remote.model.GitHubPullRequest
+import br.com.ramirosneto.github.repos.app.presentation.model.PullRequestDTO
 import br.com.ramirosneto.github.repos.app.presentation.model.RepositoryDTO
+import br.com.ramirosneto.github.repos.app.util.toPullRequestDTO
 import br.com.ramirosneto.github.repos.app.util.toRepositoryDTO
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class GitHubRepositoryImpl @Inject constructor(private val api: GitHubApi) : GitHubRepository {
+class GitHubRepositoryImpl @Inject constructor(
+    private val api: GitHubApi
+) : GitHubRepository {
 
-    override fun searchRepositories(
+    override fun getRepositories(
         query: String,
         sort: String,
+        perPage: String,
         page: Int
     ): Single<List<RepositoryDTO>> {
-        val response = api.searchRepositories(query, sort, page)
+        val response = api.getRepositories(query, sort, perPage, page)
         return response.map {
             it.items.map { it.toRepositoryDTO() }
         }
@@ -23,7 +27,10 @@ class GitHubRepositoryImpl @Inject constructor(private val api: GitHubApi) : Git
     override fun getPullRequests(
         owner: String,
         repo: String
-    ): Single<List<GitHubPullRequest>> {
-        return api.getPullRequests(owner, repo)
+    ): Single<List<PullRequestDTO>> {
+        val response = api.getPullRequests(owner, repo)
+        return response.map {
+            it.map { it.toPullRequestDTO() }
+        }
     }
 }

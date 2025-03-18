@@ -12,7 +12,7 @@ data class GitHubResponse(
 
 @JsonClass(generateAdapter = true)
 data class GitHubRepositoryData(
-    val id: Int,
+    val id: Long,
     val name: String?,
     val description: String?,
     @Json(name = "stargazers_count") val stars: Int,
@@ -22,7 +22,7 @@ data class GitHubRepositoryData(
 
 @JsonClass(generateAdapter = true)
 data class GitHubOwner(
-    val id: Int,
+    val id: Long,
     val login: String,
     @Json(name = "avatar_url") val avatarUrl: String
 )

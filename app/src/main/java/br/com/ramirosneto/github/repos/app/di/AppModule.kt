@@ -1,6 +1,8 @@
 package br.com.ramirosneto.github.repos.app.di
 
 import br.com.ramirosneto.github.repos.app.data.remote.api.GitHubApi
+import br.com.ramirosneto.github.repos.app.data.remote.repository.GitHubRepository
+import br.com.ramirosneto.github.repos.app.data.remote.repository.GitHubRepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -35,4 +37,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGitHubApi(retrofit: Retrofit): GitHubApi = retrofit.create(GitHubApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGitHubRepository(api: GitHubApi): GitHubRepository {
+        return GitHubRepositoryImpl(api)
+    }
 }

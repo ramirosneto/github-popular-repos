@@ -31,7 +31,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +49,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.ramirosneto.github.repos.app.R
 import br.com.ramirosneto.github.repos.app.presentation.components.ExpandableText
+import br.com.ramirosneto.github.repos.app.presentation.components.IconWithText
 import br.com.ramirosneto.github.repos.app.presentation.model.RepositoryDTO
 import br.com.ramirosneto.github.repos.app.presentation.viewmodel.GitHubRepositoriesViewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -54,16 +59,24 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RepositoryListScreen(viewModel: GitHubRepositoriesViewModel) {
-    val pagingData = viewModel.state.collectAsLazyPagingItems()
+    val pagingData = viewModel.repositories.collectAsLazyPagingItems()
     val coroutineScope = rememberCoroutineScope()
     val stateList = rememberLazyListState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.java_repos)) },
+                title = {
+                    Text(
+                        text = stringResource(R.string.java_repos),
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.LightGray
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 actions = {
                     IconButton(onClick = { pagingData.refresh() }) {
@@ -85,15 +98,18 @@ fun RepositoryListScreen(viewModel: GitHubRepositoriesViewModel) {
         }
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
-            when {
-                pagingData.loadState.refresh is LoadState.Error -> ErrorScreen(
+            when (pagingData.loadState.refresh) {
+                is LoadState.Error -> ErrorScreen(
                     message = (pagingData.loadState.refresh as LoadState.Error).error.message
                         ?: stringResource(R.string.unknown_error),
-                    onClick = { pagingData.refresh() }
+                    onClick = { pagingData.retry() }
                 )
 
-                pagingData.loadState.refresh is LoadState.Loading ->
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                is LoadState.Loading -> CircularProgressIndicator(
+                    modifier = Modifier.align(
+                        Alignment.Center
+                    )
+                )
 
                 else -> {
                     LazyColumn(
@@ -109,7 +125,7 @@ fun RepositoryListScreen(viewModel: GitHubRepositoriesViewModel) {
                         ) { index ->
                             val repository = pagingData[index]
                             repository?.let {
-                                RepositoryItem(it)
+                                RepositoryItem(viewModel, it)
                             }
                         }
 
@@ -131,12 +147,16 @@ fun RepositoryListScreen(viewModel: GitHubRepositoriesViewModel) {
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun RepositoryItem(gitHubRepository: RepositoryDTO) {
+fun RepositoryItem(viewModel: GitHubRepositoriesViewModel, gitHubRepository: RepositoryDTO) {
+    var showBottomSheet by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .testTag("RepositoryItem")
-            .clickable { /*onClick()*/ },
+            .clickable {
+                showBottomSheet = true
+            },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
         ),
@@ -165,36 +185,14 @@ fun RepositoryItem(gitHubRepository: RepositoryDTO) {
                 Row(
                     modifier = Modifier.padding(top = 4.dp)
                 ) {
-                    Row(modifier = Modifier.padding(end = 4.dp)) {
-                        Icon(
-                            imageVector = Icons.Filled.Star,
-                            contentDescription = "Star Icon",
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.Bottom),
-                            tint = Color.Black
-                        )
-                        Text(
-                            modifier = Modifier.padding(top = 4.dp),
-                            text = "${gitHubRepository.starsCount}",
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                    }
-                    Row {
-                        Icon(
-                            painter = painterResource(id = R.drawable.fork_icon),
-                            contentDescription = "Fork Icon",
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.Bottom),
-                            tint = Color.Black
-                        )
-                        Text(
-                            modifier = Modifier.padding(top = 4.dp),
-                            text = "${gitHubRepository.forksCount}",
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                    }
+                    IconWithText(
+                        icon = Icons.Filled.Star,
+                        text = gitHubRepository.starsCount.toString()
+                    )
+                    IconWithText(
+                        icon = painterResource(id = R.drawable.fork_icon),
+                        text = gitHubRepository.forksCount.toString()
+                    )
                 }
             }
 
@@ -219,6 +217,16 @@ fun RepositoryItem(gitHubRepository: RepositoryDTO) {
                     textAlign = TextAlign.Center
                 )
             }
+        }
+    }
+
+    if (showBottomSheet) {
+        BottomSheet(
+            owner = gitHubRepository.owner.login,
+            repo = gitHubRepository.name.orEmpty(),
+            viewModel = viewModel
+        ) {
+            showBottomSheet = false
         }
     }
 }
