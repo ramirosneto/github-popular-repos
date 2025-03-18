@@ -12,7 +12,7 @@ retrofit = "2.11.0"
 moshi = "1.15.1"
 rxjava = "3.1.10"
 rxandroid = "3.0.2"
-glide = "4.16.0"
+glide = "1.0.0-alpha.1"
 dagger = "2.55"
 paging = "3.3.6"
 pagingCompose = "3.3.6"
@@ -40,8 +40,7 @@ moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
 rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+glide = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 paging-rxjava = { group = "androidx.paging", name = "paging-rxjava3", version.ref = "paging" }

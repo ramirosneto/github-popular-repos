@@ -15,7 +15,14 @@ data class GitHubRepositoryData(
     val id: Int,
     val name: String?,
     val description: String?,
-    @Json(name = "forks_count") val forksCount: Int,
-    val watchers: Int,
-    val score: Double
+    @Json(name = "stargazers_count") val stars: Int,
+    val forks: Int,
+    val owner: GitHubOwner
+)
+
+@JsonClass(generateAdapter = true)
+data class GitHubOwner(
+    val id: Int,
+    val login: String,
+    @Json(name = "avatar_url") val avatarUrl: String
 )

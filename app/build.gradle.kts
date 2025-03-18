@@ -61,7 +61,6 @@ dependencies {
     implementation(libs.rxjava)
     implementation(libs.rxandroid)
     implementation(libs.glide)
-    kapt(libs.glide.compiler)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
     implementation(libs.paging.rxjava)

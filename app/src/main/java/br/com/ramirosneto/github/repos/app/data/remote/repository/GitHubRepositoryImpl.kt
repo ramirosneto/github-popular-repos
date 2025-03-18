@@ -27,4 +27,3 @@ class GitHubRepositoryImpl @Inject constructor(private val api: GitHubApi) : Git
         return api.getPullRequests(owner, repo)
     }
 }
-

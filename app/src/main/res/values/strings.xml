@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitHub Popular Repos</string>
     <string name="java_repos">Java popular repos</string>
+    <string name="unknown_error">Aconteceu um erro inesperado ao carregar as informações</string>
 </resources>
