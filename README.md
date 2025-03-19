@@ -49,6 +49,7 @@ O aplicativo usa as seguintes bibliotecas:
   dependências no aplicativo.
 * **Retrofit**: Uma biblioteca de rede que facilita a conexão com APIs.
 * **Moshi**: Uma biblioteca de serialização/desserialização de dados em JSON.
+* **Glide**: Uma biblioteca de carregamento assíncrono de imagem.
 * **Kotlin Coroutines**: Uma biblioteca para executar código assíncrono em Kotlin.
 * **ViewModel**: Uma classe do ciclo de vida do Android Jetpack que gerencia dados da interface do
   usuário e sobrevive a alterações de configuração.
@@ -60,3 +61,6 @@ Para executar o aplicativo, siga estas etapas:
 1. Clone o repositório: `git clone https://github.com/ramirosneto/github-popular-repos.git`
 2. Abra o projeto no Android Studio.
 3. Execute o projeto em um dispositivo virtual ou físico.
+
+Obs: Foi utilizada a seguinte versão do JDK para rodar o projeto
+- jbr 21.0.5
