@@ -51,6 +51,7 @@ O aplicativo usa as seguintes bibliotecas:
 * **Moshi**: Uma biblioteca de serialização/desserialização de dados em JSON.
 * **Glide**: Uma biblioteca de carregamento assíncrono de imagem.
 * **RxJava**: Uma biblioteca para executar código assíncrono em Kotlin.
+* **Paging**: Uma biblioteca para fazer a paginação dos dados, evitando que os dados sejam carregados numa única requisição.
 * **ViewModel**: Uma classe do ciclo de vida do Android Jetpack que gerencia dados da interface do
   usuário e sobrevive a alterações de configuração.
 
