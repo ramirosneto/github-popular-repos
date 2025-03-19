@@ -13,7 +13,7 @@ class RepositoryPagingSource @Inject constructor(
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, RepositoryDTO>> {
         val page = params.key ?: 1
-        return repository.getRepositories(QUERY, DEFAULT_SORT, DEFAULT_PER_PAGE, page)
+        return repository.getRepositories(QUERY, DEFAULT_SORT, DEFAULT_ITEMS_PER_PAGE, page)
             .subscribeOn(Schedulers.io())
             .map<LoadResult<Int, RepositoryDTO>> { response ->
                 LoadResult.Page(
@@ -34,6 +34,6 @@ class RepositoryPagingSource @Inject constructor(
     companion object {
         private const val QUERY = "language:Java"
         private const val DEFAULT_SORT = "stars"
-        private const val DEFAULT_PER_PAGE = "20"
+        private const val DEFAULT_ITEMS_PER_PAGE = "20"
     }
 }

@@ -63,6 +63,7 @@ fun BottomSheet(
     var pullRequestsState = viewModel.pullRequests.subscribeAsState(emptyList())
 
     ModalBottomSheet(
+        modifier = Modifier.testTag("PullRequestBottomSheet"),
         sheetState = bottomSheetState,
         onDismissRequest = {
             viewModel.clearPullRequests()

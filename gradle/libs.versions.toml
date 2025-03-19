@@ -16,6 +16,9 @@ glide = "1.0.0-alpha.1"
 dagger = "2.55"
 paging = "3.3.6"
 pagingCompose = "3.3.6"
+mockk = "1.13.17"
+uiautomator = "2.3.0"
+espressoIntents = "3.6.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -46,6 +49,9 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 paging-rxjava = { group = "androidx.paging", name = "paging-rxjava3", version.ref = "paging" }
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "espressoIntents" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
