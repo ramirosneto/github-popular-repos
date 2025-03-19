@@ -50,7 +50,7 @@ O aplicativo usa as seguintes bibliotecas:
 * **Retrofit**: Uma biblioteca de rede que facilita a conexão com APIs.
 * **Moshi**: Uma biblioteca de serialização/desserialização de dados em JSON.
 * **Glide**: Uma biblioteca de carregamento assíncrono de imagem.
-* **Kotlin Coroutines**: Uma biblioteca para executar código assíncrono em Kotlin.
+* **RxJava**: Uma biblioteca para executar código assíncrono em Kotlin.
 * **ViewModel**: Uma classe do ciclo de vida do Android Jetpack que gerencia dados da interface do
   usuário e sobrevive a alterações de configuração.
 
